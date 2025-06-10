@@ -12,26 +12,26 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
   return (
     <div className={`flex items-start gap-3 ${isUser ? 'flex-row-reverse' : ''}`}>
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+      <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${
         isUser 
-          ? 'bg-gradient-to-r from-green-500 to-emerald-600' 
-          : 'bg-gradient-to-r from-blue-500 to-purple-600'
+          ? 'bg-blue-600' 
+          : 'bg-white'
       }`}>
         {isUser ? (
           <User className="w-4 h-4 text-white" />
         ) : (
-          <Bot className="w-4 h-4 text-white" />
+          <Bot className="w-4 h-4 text-gray-900" />
         )}
       </div>
       <div className={`max-w-[80%] ${isUser ? 'text-right' : ''}`}>
         <div className={`inline-block px-4 py-3 rounded-2xl ${
           isUser
-            ? 'bg-gradient-to-r from-green-500 to-emerald-600 text-white'
-            : 'bg-slate-100 text-slate-800'
+            ? 'bg-blue-600 text-white'
+            : 'bg-gray-800 text-gray-100'
         }`}>
           <p className="text-sm leading-relaxed whitespace-pre-wrap">{message.content}</p>
         </div>
-        <p className="text-xs text-muted-foreground mt-1 px-2">
+        <p className="text-xs text-gray-500 mt-1 px-2">
           {new Date(message.timestamp).toLocaleTimeString()}
         </p>
       </div>
