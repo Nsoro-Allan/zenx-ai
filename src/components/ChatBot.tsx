@@ -94,7 +94,7 @@ const ChatBot = () => {
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="What do you want to know?"
                     disabled={isLoading || !hasApiKey}
-                    className="border-0 text-white placeholder-gray-400 pl-6 pr-16 py-6 text-lg focus-visible:ring-0 focus-visible:ring-offset-0 h-auto rounded-2xl"
+                    className="border-0 text-white placeholder-white-400 pl-6 pr-16 py-6 text-lg focus-visible:ring-0 focus-visible:ring-offset-0 h-auto rounded-2xl"
                     style={{ backgroundColor: 'transparent' }}
                   />
                   <div className="absolute right-3 top-1/2 -translate-y-1/2">
