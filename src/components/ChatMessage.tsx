@@ -12,23 +12,24 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
   return (
     <div className={`flex items-start gap-4 ${isUser ? 'flex-row-reverse' : ''}`}>
-      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-        isUser 
-          ? 'bg-blue-600' 
-          : 'bg-white'
-      }`}>
+      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0`}
+           style={{ 
+             backgroundColor: isUser ? '#161618' : '#161618',
+             border: '1px solid #333'
+           }}>
         {isUser ? (
           <User className="w-5 h-5 text-white" />
         ) : (
-          <Bot className="w-5 h-5 text-gray-900" />
+          <Bot className="w-5 h-5 text-white" />
         )}
       </div>
       <div className={`max-w-[80%] ${isUser ? 'text-right' : ''}`}>
-        <div className={`inline-block px-6 py-4 rounded-2xl ${
-          isUser
-            ? 'bg-blue-600 text-white'
-            : 'bg-gray-800 text-gray-100 border border-gray-700'
-        }`}>
+        <div className={`inline-block px-6 py-4 rounded-2xl`}
+             style={{
+               backgroundColor: '#161618',
+               border: '1px solid #333',
+               color: 'white'
+             }}>
           <p className="text-base leading-relaxed whitespace-pre-wrap">{message.content}</p>
         </div>
         <p className="text-xs text-gray-500 mt-2 px-2">

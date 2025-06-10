@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Settings, Bot, Paperclip, Plus, Bell, Menu, User, ArrowUp } from 'lucide-react';
+import { Send, Bot, Plus, User, ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -34,14 +34,15 @@ const ChatBot = () => {
 
   return (
     <div className="min-h-screen text-white flex flex-col" style={{ backgroundColor: '#161618' }}>
-      {/* Top Navigation Bar - Grok Style */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-800">
-        <div className="flex items-center gap-4">
-          {/* ZenxAI Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <Bot className="w-5 h-5 text-gray-900" />
+      {/* Top Navigation Bar - Simplified */}
+      <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: '#161618' }}>
+        <div className="flex items-center gap-3">
+          {/* ZenxAI Logo with Name */}
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: '#161618', border: '1px solid #333' }}>
+              <Bot className="w-5 h-5 text-white" />
             </div>
+            <h1 className="text-xl font-bold text-white">ZenxAI</h1>
           </div>
         </div>
         
@@ -49,22 +50,9 @@ const ChatBot = () => {
           <Button
             variant="ghost"
             size="sm"
-            className="text-gray-400 hover:text-white hover:bg-gray-800/50 p-2"
-          >
-            <Bell className="w-5 h-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="text-gray-400 hover:text-white hover:bg-gray-800/50 p-2"
-          >
-            <Menu className="w-5 h-5" />
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
             onClick={() => setShowSettings(!showSettings)}
-            className="text-gray-400 hover:text-white hover:bg-gray-800/50 p-2"
+            className="text-gray-400 hover:text-white p-2"
+            style={{ backgroundColor: 'transparent' }}
           >
             <User className="w-5 h-5" />
           </Button>
@@ -79,48 +67,42 @@ const ChatBot = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {messages.length === 0 ? (
-          /* Welcome Screen - Exact Grok Style */
+          /* Welcome Screen */
           <div className="flex-1 flex flex-col items-center justify-center px-6 max-w-4xl mx-auto w-full">
             {/* Logo and Title */}
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center">
-                <Bot className="w-7 h-7 text-gray-900" />
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ backgroundColor: '#161618', border: '1px solid #333' }}>
+                <Bot className="w-7 h-7 text-white" />
               </div>
-              <h1 className="text-4xl font-normal text-white">ZenxAI</h1>
+              <h1 className="text-4xl font-bold text-white">ZenxAI</h1>
             </div>
             
             {!hasApiKey && (
-              <div className="bg-orange-900/20 border border-orange-800 rounded-xl p-4 mb-8 max-w-md">
+              <div className="rounded-xl p-4 mb-8 max-w-md" style={{ backgroundColor: '#161618', border: '1px solid #333' }}>
                 <p className="text-orange-400 text-sm text-center">
                   Please add your OpenRouter API key in settings to start chatting
                 </p>
               </div>
             )}
 
-            {/* Large Input Field - Exact Grok Style */}
+            {/* Large Input Field */}
             <div className="w-full max-w-4xl mb-8">
               <form onSubmit={handleSubmit} className="relative">
-                <div className="relative bg-gray-800 rounded-2xl border border-gray-700">
+                <div className="relative rounded-2xl" style={{ backgroundColor: '#161618', border: '1px solid #333' }}>
                   <Input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="What do you want to know?"
                     disabled={isLoading || !hasApiKey}
-                    className="bg-transparent border-0 text-white placeholder-gray-400 pl-6 pr-24 py-6 text-lg focus-visible:ring-0 focus-visible:ring-offset-0 h-auto rounded-2xl"
+                    className="border-0 text-white placeholder-gray-400 pl-6 pr-16 py-6 text-lg focus-visible:ring-0 focus-visible:ring-offset-0 h-auto rounded-2xl"
+                    style={{ backgroundColor: 'transparent' }}
                   />
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                    <Button
-                      type="button"
-                      variant="ghost"
-                      size="sm"
-                      className="text-gray-400 hover:text-white h-10 w-10 p-0 rounded-xl"
-                    >
-                      <Paperclip className="w-5 h-5" />
-                    </Button>
+                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
                     <Button
                       type="submit"
                       disabled={!input.trim() || isLoading || !hasApiKey}
-                      className="bg-white text-gray-900 hover:bg-gray-200 h-10 w-10 p-0 rounded-xl"
+                      className="text-gray-900 h-10 w-10 p-0 rounded-xl"
+                      style={{ backgroundColor: 'white' }}
                     >
                       <ArrowUp className="w-5 h-5" />
                     </Button>
@@ -129,21 +111,15 @@ const ChatBot = () => {
               </form>
             </div>
 
-            {/* Feature Buttons - Grok Style */}
+            {/* Feature Buttons */}
             <div className="flex flex-wrap justify-center gap-4 mb-8">
               <Button
                 variant="outline"
-                className="bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 px-6 py-3 rounded-xl"
+                className="text-gray-300 px-6 py-3 rounded-xl border"
+                style={{ backgroundColor: '#161618', borderColor: '#333' }}
               >
                 <Bot className="w-4 h-4 mr-2" />
                 Ask AI
-              </Button>
-              <Button
-                variant="outline"
-                className="bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 px-6 py-3 rounded-xl"
-              >
-                <Settings className="w-4 h-4 mr-2" />
-                Settings
               </Button>
             </div>
           </div>
@@ -151,11 +127,12 @@ const ChatBot = () => {
           /* Chat View */
           <>
             {/* Chat Header with New Chat Button */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-800">
+            <div className="flex items-center justify-between p-4 border-b" style={{ borderColor: '#333' }}>
               <h2 className="text-lg font-medium text-white">Chat</h2>
               <Button
                 onClick={handleNewChat}
-                className="bg-gray-800 text-white hover:bg-gray-700 px-4 py-2 rounded-xl flex items-center gap-2"
+                className="text-white px-4 py-2 rounded-xl flex items-center gap-2"
+                style={{ backgroundColor: '#161618', border: '1px solid #333' }}
               >
                 <Plus className="w-4 h-4" />
                 New Chat
@@ -169,10 +146,10 @@ const ChatBot = () => {
                 ))}
                 {isLoading && (
                   <div className="flex items-start gap-3 max-w-4xl mx-auto">
-                    <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
-                      <Bot className="w-5 h-5 text-gray-900" />
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#161618', border: '1px solid #333' }}>
+                      <Bot className="w-5 h-5 text-white" />
                     </div>
-                    <div className="bg-gray-800 rounded-2xl px-6 py-4">
+                    <div className="rounded-2xl px-6 py-4" style={{ backgroundColor: '#161618', border: '1px solid #333' }}>
                       <div className="flex items-center gap-1">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
@@ -185,30 +162,24 @@ const ChatBot = () => {
             </ScrollArea>
 
             {/* Input Area - Chat View */}
-            <div className="border-t border-gray-800 p-6">
+            <div className="border-t p-6" style={{ borderColor: '#333' }}>
               <div className="max-w-4xl mx-auto">
                 <form onSubmit={handleSubmit} className="relative">
-                  <div className="relative bg-gray-800 rounded-2xl border border-gray-700">
+                  <div className="relative rounded-2xl" style={{ backgroundColor: '#161618', border: '1px solid #333' }}>
                     <Input
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       placeholder="What do you want to know?"
                       disabled={isLoading || !hasApiKey}
-                      className="bg-transparent border-0 text-white placeholder-gray-400 pl-6 pr-24 py-4 text-base focus-visible:ring-0 focus-visible:ring-offset-0 h-auto rounded-2xl"
+                      className="border-0 text-white placeholder-gray-400 pl-6 pr-16 py-4 text-base focus-visible:ring-0 focus-visible:ring-offset-0 h-auto rounded-2xl"
+                      style={{ backgroundColor: 'transparent' }}
                     />
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        className="text-gray-400 hover:text-white h-8 w-8 p-0 rounded-lg"
-                      >
-                        <Paperclip className="w-4 h-4" />
-                      </Button>
+                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
                       <Button
                         type="submit"
                         disabled={!input.trim() || isLoading || !hasApiKey}
-                        className="bg-white text-gray-900 hover:bg-gray-200 h-8 w-8 p-0 rounded-lg"
+                        className="text-gray-900 h-8 w-8 p-0 rounded-lg"
+                        style={{ backgroundColor: 'white' }}
                       >
                         <ArrowUp className="w-4 h-4" />
                       </Button>
