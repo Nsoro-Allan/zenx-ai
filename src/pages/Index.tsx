@@ -3,7 +3,7 @@ import ChatBot from "@/components/ChatBot";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: '#161618' }}>
       <ChatBot />
     </div>
   );

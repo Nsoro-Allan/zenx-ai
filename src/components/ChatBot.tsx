@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Settings, Bot, User, Paperclip } from 'lucide-react';
+import { Send, Settings, Bot, Paperclip } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -29,22 +29,22 @@ const ChatBot = () => {
   }, [messages]);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+    <div className="min-h-screen text-white flex flex-col" style={{ backgroundColor: '#161618' }}>
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-800">
+      <div className="flex items-center justify-between p-6">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
             <Bot className="w-5 h-5 text-gray-900" />
           </div>
-          <h1 className="text-xl font-semibold text-white">ZenxAI</h1>
+          <h1 className="text-xl font-medium text-white">ZenxAI</h1>
         </div>
         <Button
           variant="ghost"
           size="sm"
           onClick={() => setShowSettings(!showSettings)}
-          className="text-gray-400 hover:text-white hover:bg-gray-800"
+          className="text-gray-400 hover:text-white hover:bg-gray-800/50"
         >
-          <Settings className="w-4 h-4" />
+          <Settings className="w-5 h-5" />
         </Button>
       </div>
 
@@ -54,50 +54,54 @@ const ChatBot = () => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col max-w-4xl mx-auto w-full">
+      <div className="flex-1 flex flex-col">
         {messages.length === 0 ? (
-          /* Welcome Screen */
-          <div className="flex-1 flex flex-col items-center justify-center px-6">
-            <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-6">
-              <Bot className="w-8 h-8 text-gray-900" />
+          /* Welcome Screen - Grok Style */
+          <div className="flex-1 flex flex-col items-center justify-center px-6 max-w-4xl mx-auto w-full">
+            {/* Logo and Title */}
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center">
+                <Bot className="w-8 h-8 text-gray-900" />
+              </div>
+              <h1 className="text-5xl font-light text-white">ZenxAI</h1>
             </div>
-            <h2 className="text-2xl font-semibold text-white mb-2">ZenxAI</h2>
-            <p className="text-gray-400 text-center mb-8">What do you want to know?</p>
+            
+            <p className="text-gray-400 text-lg mb-12">What do you want to know?</p>
             
             {!hasApiKey && (
-              <div className="bg-orange-900/20 border border-orange-800 rounded-lg p-4 mb-8">
+              <div className="bg-orange-900/20 border border-orange-800 rounded-xl p-4 mb-8 max-w-md">
                 <p className="text-orange-400 text-sm text-center">
                   Please add your OpenRouter API key in settings to start chatting
                 </p>
               </div>
             )}
 
-            {/* Input Area - Welcome Screen */}
-            <div className="w-full max-w-2xl">
+            {/* Large Input Field - Grok Style */}
+            <div className="w-full max-w-3xl">
               <form onSubmit={handleSubmit} className="relative">
-                <div className="relative bg-gray-800 rounded-xl border border-gray-700 focus-within:border-gray-600">
+                <div className="relative bg-gray-800/50 rounded-2xl border border-gray-700/50 focus-within:border-gray-600">
                   <Input
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder={hasApiKey ? "Ask me anything..." : "Add API key in settings first"}
                     disabled={isLoading || !hasApiKey}
-                    className="bg-transparent border-0 text-white placeholder-gray-500 pl-4 pr-20 py-4 text-base focus-visible:ring-0 focus-visible:ring-offset-0"
+                    className="bg-transparent border-0 text-white placeholder-gray-500 pl-6 pr-20 py-6 text-lg focus-visible:ring-0 focus-visible:ring-offset-0 h-auto"
                   />
-                  <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                  <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
                     <Button
                       type="button"
                       variant="ghost"
                       size="sm"
-                      className="text-gray-400 hover:text-white h-8 w-8 p-0"
+                      className="text-gray-400 hover:text-white h-10 w-10 p-0"
                     >
-                      <Paperclip className="w-4 h-4" />
+                      <Paperclip className="w-5 h-5" />
                     </Button>
                     <Button
                       type="submit"
                       disabled={!input.trim() || isLoading || !hasApiKey}
-                      className="bg-white text-gray-900 hover:bg-gray-200 h-8 w-8 p-0 rounded-lg"
+                      className="bg-gray-700 text-white hover:bg-gray-600 h-10 w-10 p-0 rounded-xl border-0"
                     >
-                      <Send className="w-4 h-4" />
+                      <Send className="w-5 h-5" />
                     </Button>
                   </div>
                 </div>
@@ -108,16 +112,16 @@ const ChatBot = () => {
           /* Chat View */
           <>
             <ScrollArea className="flex-1 px-6 py-4" ref={scrollAreaRef}>
-              <div className="space-y-6 max-w-3xl mx-auto">
+              <div className="space-y-6 max-w-4xl mx-auto">
                 {messages.map((message) => (
                   <ChatMessage key={message.id} message={message} />
                 ))}
                 {isLoading && (
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Bot className="w-4 h-4 text-gray-900" />
+                  <div className="flex items-start gap-3 max-w-4xl mx-auto">
+                    <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center flex-shrink-0">
+                      <Bot className="w-5 h-5 text-gray-900" />
                     </div>
-                    <div className="bg-gray-800 rounded-2xl px-4 py-3">
+                    <div className="bg-gray-800/50 rounded-2xl px-6 py-4">
                       <div className="flex items-center gap-1">
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
@@ -130,18 +134,18 @@ const ChatBot = () => {
             </ScrollArea>
 
             {/* Input Area - Chat View */}
-            <div className="border-t border-gray-800 p-4">
-              <div className="max-w-3xl mx-auto">
+            <div className="border-t border-gray-700/50 p-6">
+              <div className="max-w-4xl mx-auto">
                 <form onSubmit={handleSubmit} className="relative">
-                  <div className="relative bg-gray-800 rounded-xl border border-gray-700 focus-within:border-gray-600">
+                  <div className="relative bg-gray-800/50 rounded-2xl border border-gray-700/50 focus-within:border-gray-600">
                     <Input
                       value={input}
                       onChange={(e) => setInput(e.target.value)}
                       placeholder={hasApiKey ? "Ask me anything..." : "Add API key in settings first"}
                       disabled={isLoading || !hasApiKey}
-                      className="bg-transparent border-0 text-white placeholder-gray-500 pl-4 pr-20 py-4 text-base focus-visible:ring-0 focus-visible:ring-offset-0"
+                      className="bg-transparent border-0 text-white placeholder-gray-500 pl-6 pr-20 py-4 text-base focus-visible:ring-0 focus-visible:ring-offset-0 h-auto"
                     />
-                    <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-3">
                       <Button
                         type="button"
                         variant="ghost"
@@ -153,7 +157,7 @@ const ChatBot = () => {
                       <Button
                         type="submit"
                         disabled={!input.trim() || isLoading || !hasApiKey}
-                        className="bg-white text-gray-900 hover:bg-gray-200 h-8 w-8 p-0 rounded-lg"
+                        className="bg-gray-700 text-white hover:bg-gray-600 h-8 w-8 p-0 rounded-lg"
                       >
                         <Send className="w-4 h-4" />
                       </Button>
