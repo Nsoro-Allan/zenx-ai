@@ -12,6 +12,10 @@ export const useChat = () => {
     return !!localStorage.getItem('zenxai_openrouter_key');
   }, []);
 
+  const clearMessages = useCallback(() => {
+    setMessages([]);
+  }, []);
+
   const sendMessage = useCallback(async (content: string) => {
     const apiKey = localStorage.getItem('zenxai_openrouter_key');
     
@@ -96,6 +100,7 @@ export const useChat = () => {
     messages,
     sendMessage,
     isLoading,
-    hasApiKey: hasApiKey()
+    hasApiKey: hasApiKey(),
+    clearMessages
   };
 };

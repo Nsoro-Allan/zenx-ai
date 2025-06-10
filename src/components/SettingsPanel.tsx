@@ -50,7 +50,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({ onClose }) => {
   };
 
   return (
-    <div className="bg-gray-800/80 border-b border-gray-700/50">
+    <div className="bg-gray-800 border-b border-gray-700">
       <div className="max-w-4xl mx-auto px-6 py-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-medium text-white">Settings</h2>
@@ -71,7 +71,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({ onClose }) => {
                     value={apiKey}
                     onChange={(e) => setApiKey(e.target.value)}
                     placeholder="Enter your OpenRouter API key"
-                    className="bg-gray-800/50 border-gray-700/50 text-white placeholder-gray-400 pr-12 py-3 text-base"
+                    className="bg-gray-900 border-gray-700 text-white placeholder-gray-400 pr-12 py-3 text-base rounded-xl"
                   />
                   <Button
                     type="button"
@@ -90,17 +90,17 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({ onClose }) => {
             </div>
 
             <div className="flex gap-3">
-              <Button onClick={handleSave} className="bg-white text-gray-900 hover:bg-gray-200 flex items-center gap-2 px-6">
+              <Button onClick={handleSave} className="bg-white text-gray-900 hover:bg-gray-200 flex items-center gap-2 px-6 rounded-xl">
                 <Save className="w-4 h-4" />
                 Save
               </Button>
-              <Button variant="outline" onClick={handleClear} className="border-gray-600 text-gray-300 hover:bg-gray-700 px-6">
+              <Button variant="outline" onClick={handleClear} className="border-gray-600 text-gray-300 hover:bg-gray-700 px-6 rounded-xl">
                 Clear
               </Button>
             </div>
           </div>
 
-          <div className="border-t border-gray-700/50 pt-6">
+          <div className="border-t border-gray-700 pt-6">
             <h3 className="font-medium text-white mb-3">About ZenxAI</h3>
             <p className="text-sm text-gray-400 leading-relaxed">
               ZenxAI is powered by OpenRouter, providing access to various AI models. 
